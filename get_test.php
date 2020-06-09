@@ -10,4 +10,4 @@ if($_GET){
     $getSex = $_POST['sex'];
     echo "我是{$getUserName}，今年{$getAge}岁，{$getSex}性。";
 }
-
+print_r($_COOKIE);
