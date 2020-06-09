@@ -6,6 +6,23 @@
 </head>
 <body>
 <button id="btn">点击加载ajax</button>
+<form  id="fm" action="get_test.php" method="get">
+    <label>
+        <input type="text" name="username" placeholder="username">
+        <input type="text" name="age" placeholder="age">
+        <input type="text" name="sex" placeholder="sex">
+    </label>
+    <input type="submit">
+</form>
+<p>上面是get，下面是post</p>
+<form  id="fm1" action="get_test.php" method="post">
+    <label>
+        <input type="text" name="username" placeholder="username">
+        <input type="text" name="age" placeholder="age">
+        <input type="text" name="sex" placeholder="sex">
+    </label>
+    <input type="submit">
+</form>
 <script defer>
     let xhr = new XMLHttpRequest();
     let oBtn = document.getElementById("btn");
@@ -14,10 +31,15 @@
         xhr.send();
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
-                alert(xhr.responseText);
+                oBtn.innerHTML = xhr.responseText;
             }
         }
     }
+
+    let oFm = document.getElementById('fm');
+    let oLabel = oFm.getElementsByTagName("label")[0];
+    let oIpt = oLabel.getElementsByTagName("input");
+
 </script>
 </body>
 </html>
