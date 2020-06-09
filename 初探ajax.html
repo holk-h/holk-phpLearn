@@ -5,14 +5,16 @@
     <title>ajax</title>
 </head>
 <body>
-<button id="btn">点击加载ajax</button>
+<button id="btn">点击用GET方法加载ajax</button>
+<button id="btn1">点击用POST方法加载ajax</button>
+<br><br>
 <form  id="fm" action="get_test.php" method="get">
     <label>
         <input type="text" name="username" placeholder="username">
         <input type="text" name="age" placeholder="age">
         <input type="text" name="sex" placeholder="sex">
     </label>
-    <input type="submit">
+    <input type="submit" value="GET提交">
 </form>
 <p>上面是get，下面是post</p>
 <form  id="fm1" action="get_test.php" method="post">
@@ -21,7 +23,7 @@
         <input type="text" name="age" placeholder="age">
         <input type="text" name="sex" placeholder="sex">
     </label>
-    <input type="submit">
+    <input type="submit" value="POST提交">
 </form>
 <script defer>
     let xhr = new XMLHttpRequest();
@@ -32,6 +34,19 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 oBtn.innerHTML = xhr.responseText;
+            }
+        }
+    }
+
+    let xhr1 = new XMLHttpRequest();
+    let oBtn1 = document.getElementById('btn1');
+    oBtn1.onclick = function () {
+        xhr1.open('post','get_test.php',true);
+        xhr1.setRequestHeader('content-type','application/x-www-form-urlencoded')
+        xhr1.send('username=test&age=998&sex=male');
+        xhr1.onreadystatechange = function () {
+            if (xhr1.readyState === 4){
+                oBtn1.innerHTML = xhr1.responseText;
             }
         }
     }
