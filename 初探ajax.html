@@ -5,13 +5,17 @@
     <title>ajax</title>
 </head>
 <body>
+<button id="btn">点击加载ajax</button>
 <script defer>
     let xhr = new XMLHttpRequest();
-    xhr.open("get","1.txt",true);
-    xhr.send();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4){
-            alert(xhr.responseText);
+    let oBtn = document.getElementById("btn");
+    oBtn.onclick = function() {
+        xhr.open("get", "1.txt", true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                alert(xhr.responseText);
+            }
         }
     }
 </script>
