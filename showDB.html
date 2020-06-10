@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>showDB</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2>获取雇员信息</h2>
+        </div>
+        <div class="panel-body">
+            <div id="btn1" class="btn btn-primary">获取所有雇员信息</div>
+            <br><br>
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <td>id</td>
+                    <td>名字</td>
+                    <td>性别</td>
+                    <td>生日</td>
+                    <td>工作</td>
+                    <td>薪水</td>
+                    <td>备注</td>
+                </tr>
+                </thead>
+                <tbody id="t1">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script defer>
+    let oBtn = document.getElementById("btn1");
+    let oT1 = document.getElementById('t1');
+    oBtn.onclick = function () {
+        $.ajax({
+            url:'showDB_json.php',
+            success: function (result) {
+                let arr = JSON.parse(result);
+                for (let i = 0; i < arr.length; i++) {
+                    let oTr = document.createElement('tr');
+                    let oTd = document.createElement('td');
+                    let oTxt = document.createTextNode(arr[i].id);
+                    oTd.appendChild(oTxt);
+                    oTr.appendChild(oTd);
+                    oT1.appendChild(oTr);
+                }
+            },
+            error: function (msg) {
+                alert(msg);
+            }
+        })
+    }
+</script>
+</body>
+</html>
