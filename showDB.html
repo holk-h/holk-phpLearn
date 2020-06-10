@@ -30,6 +30,9 @@
                 <tbody id="t1">
                 </tbody>
             </table>
+            <div class="panel-footer">
+                <a href="#">添加项目</a>
+            </div>
         </div>
     </div>
 </div>
@@ -42,12 +45,10 @@
             success: function (result) {
                 let arr = JSON.parse(result);
                 for (let i = 0; i < arr.length; i++) {
-                    let oTr = document.createElement('tr');
-                    let oTd = document.createElement('td');
-                    let oTxt = document.createTextNode(arr[i].id);
-                    oTd.appendChild(oTxt);
-                    oTr.appendChild(oTd);
-                    oT1.appendChild(oTr);
+                    oT1.innerHTML += `<tr>
+                    <td>${arr[i].id}</td><td>${arr[i].name}</td><td>${arr[i].sex}</td>
+                    <td>${arr[i].birthday}</td><td>${arr[i].job}</td><td>${arr[i].salary}</td>
+                    <td>${arr[i].resume}</td></tr>`
                 }
             },
             error: function (msg) {

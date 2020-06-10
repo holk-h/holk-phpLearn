@@ -1,0 +1,99 @@
+<!--
+  ~ Copyright (c) holk 2020.
+  ~ by han gao
+  ~ holk@holk.tech
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addItem</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2>获取雇员信息</h2>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" style="text-align: center" action="addItem.php" method="post">
+                <div class="form-group">
+                    <label>
+                        <input type="text" class="form-control" name="id" placeholder="id">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="text" class="form-control" name="name" placeholder="名字">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="text" class="form-control" name="sex" placeholder="性别">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="text" class="form-control" name="birthday" placeholder="生日">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="text" class="form-control" name="job" placeholder="工作">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="text" class="form-control" name="salary" placeholder="薪水">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="text" class="form-control" name="resume" placeholder="备注">
+                    </label>
+                </div>
+            </form>
+            <div class="form-group">
+            <button class="btn btn-primary" id="btn">提交</button>
+        </div>
+            <br><br>
+            <div class="panel-footer">
+                <a href="#">添加项目</a>
+            </div>
+        </div>
+    </div>
+    <script defer>
+        let oBtn = document.getElementById('btn');
+        let oIpt = $('input');
+
+        oBtn.onclick = function () {
+            $.ajax({
+                url: 'addItem.php',
+                method: 'post',
+                data: {
+                    id: oIpt[0].value,
+                    name: oIpt[1].value,
+                    sex: oIpt[2].value,
+                    birthday: oIpt[3].value,
+                    job: oIpt[4].value,
+                    salary: oIpt[5].value,
+                    resume: oIpt[6].value
+                },
+                success: function (res) {
+                    let arr = JSON.parse(res);
+                    if (arr.code === 0){
+                        alert(arr.msg);
+                    }
+                },
+                error: function (res) {
+                    alert('失败'+res);
+                }
+            })
+        }
+    </script>
+</div>
+</body>
+</html>
